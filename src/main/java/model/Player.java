@@ -1,7 +1,10 @@
 package model;
 
+import com.sun.javafx.scene.traversal.Direction;
 import view.ConsoleView;
 import view.View;
+
+import javax.swing.text.Position;
 
 public class Player {
     public int strench;
@@ -12,6 +15,10 @@ public class Player {
         this.strench = strench;
         this.health = health;
         this.inventaire = new Inventaire(10);
+    }
+
+    public void move (Direction direction){
+
     }
 
     public Player() {
