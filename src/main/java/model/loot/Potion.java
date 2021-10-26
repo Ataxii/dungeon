@@ -5,6 +5,11 @@ public class Potion implements Loot{
 
 
     @Override
+    public String getName() {
+        return "heal";
+    }
+
+    @Override
     public int getValue() {
         return 0;
     }
