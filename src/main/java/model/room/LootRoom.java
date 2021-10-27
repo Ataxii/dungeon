@@ -1,7 +1,8 @@
 package model.room;
 
 
-import com.sun.javafx.scene.traversal.Direction;
+
+import model.Direction;
 import model.loot.Loot;
 import model.loot.Potion;
 import model.loot.Weapon;
@@ -9,10 +10,10 @@ import model.loot.Weapon;
 import java.util.Random;
 
 public class LootRoom implements RoomType{
-    private Loot loot;
+    private final Loot loot;
     public Direction[] directions;
 
-    public LootRoom(Direction[] directions) {
+    public LootRoom(Direction... directions) {
         this.loot = generationLoot();
         this.directions = directions;
     }
@@ -25,9 +26,13 @@ public class LootRoom implements RoomType{
         else return new Potion();
     }
 
+    public Loot getLoot() {
+        return loot;
+    }
+
     @Override
     public String description() {
-        return "Vous êtes dans une salle avec du loot";
+        return "lootRoom";
     }
 
     @Override

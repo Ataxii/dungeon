@@ -1,17 +1,18 @@
 package model.room;
 
-import com.sun.javafx.scene.traversal.Direction;
+
+import model.Direction;
 
 public class EmptyRoom implements RoomType{
     public Direction[] directions;
 
-    public EmptyRoom(Direction[] directions) {
+    public EmptyRoom(Direction... directions) {
         this.directions = directions;
     }
 
     @Override
     public String description() {
-        return "Vous êtes dans une salle avec rien";
+        return "EmptyRoom";
     }
 
     @Override

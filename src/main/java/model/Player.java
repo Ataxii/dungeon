@@ -11,20 +11,15 @@ public class Player {
     public int health;
     public Inventaire inventaire;
 
+    /**
+     * constructeur d'un playeur compsé d'un inventaire vide, une force et d'un nombre de hp
+     * @param strench int pour la force
+     * @param health int pour le nombre de hp
+     */
     public Player(int strench, int health) {
         this.strench = strench;
         this.health = health;
         this.inventaire = new Inventaire(10);
     }
 
-    public void move (Direction direction){
-
-    }
-
-    public Player() {
-
-    }
-
-    public Player(ConsoleView consoleView) {
-    }
 }

@@ -1,14 +1,15 @@
 package model.room;
 
-import com.sun.javafx.scene.traversal.Direction;
+
+import model.Direction;
 import model.monster.Monster;
 import model.monster.Orc;
 
 public class MonsterRoom implements RoomType{
     private Monster monster;
-    private Direction[] directions;
+    private final Direction[] directions;
 
-    public MonsterRoom(Direction[] directions) {
+    public MonsterRoom(Direction... directions) {
         this.monster = new Orc(100, 13);
         this.directions = directions;
     }
@@ -17,13 +18,21 @@ public class MonsterRoom implements RoomType{
         return monster;
     }
 
+    public void killMonster(){
+        monster = null;
+    }
+
+    public boolean isDead(){
+        return monster == null;
+    }
+
     public Direction[] getDirections() {
         return directions;
     }
 
     @Override
     public String description() {
-        return "Vous êtes dans une salle avec un monstre";
+        return "MonsterRoom avec un " + monster.getName();
     }
 
 }

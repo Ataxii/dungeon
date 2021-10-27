@@ -18,4 +18,9 @@ public class Orc implements Monster{
     public int getStrength() {
         return 0;
     }
+
+    @Override
+    public String getName() {
+        return "Orc";
+    }
 }

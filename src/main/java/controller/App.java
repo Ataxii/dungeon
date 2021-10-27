@@ -2,15 +2,21 @@ package controller;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Dungeon;
 import model.Player;
 import view.JavaFXView;
 import view.View;
+
+import java.net.URL;
 
 public class App extends Application {
     /*
@@ -32,17 +38,24 @@ public class App extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Group root = new Group();
-        JavaFXView view = new JavaFXView();
-        Text message = view.text;
-        root.getChildren().add(message);
-        root.getChildren().add(new Canvas(400,200));
-        Scene scene = new Scene(root);
-        Player player = new Player();
-        JavaFXController javaFXController = new JavaFXController(player);
+
+        Dungeon dungeon = new Dungeon();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(App.class.getResource("src/main/java/view/Screen.fxml"));
+        BorderPane rootLayout = (BorderPane) loader.load();
+        final Scene scene = new Scene(rootLayout, 300, 250);
+        primaryStage.setScene(scene);
+
+
+        JavaFXController javaFXController = new JavaFXController(dungeon);
         scene.setOnKeyPressed(javaFXController.eventHandler);
+
+
         primaryStage.setScene(scene);
         primaryStage.show();
 
     }
+
+
+
 }

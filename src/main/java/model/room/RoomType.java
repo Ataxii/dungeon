@@ -1,6 +1,7 @@
 package model.room;
 
-import com.sun.javafx.scene.traversal.Direction;
+
+import model.Direction;
 
 public interface RoomType {
     public String description();
