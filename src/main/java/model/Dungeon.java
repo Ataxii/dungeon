@@ -4,14 +4,19 @@ import model.room.EmptyRoom;
 import model.room.LootRoom;
 import model.room.MonsterRoom;
 import model.room.RoomType;
+import view.ConsoleView;
+import view.JavaFXView;
+import view.View;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 public class Dungeon {
     public Player player;
     public RoomType[][] rooms;
     public Point2D playerPosition;
+    public ArrayList<View> views;
 
 
     public Dungeon() {
@@ -19,7 +24,9 @@ public class Dungeon {
         generation();
         playerPosition = new Point();
         playerPosition.setLocation(0,0);
-
+        views = new ArrayList<>();
+        views.add(new ConsoleView());
+        views.add(new JavaFXView());
     }
 
     public void movePlayer(Direction direction){
@@ -34,7 +41,9 @@ public class Dungeon {
                     case LEFT:  playerPosition.setLocation(playerX - 1, playerY); break;
                     case RIGHT: playerPosition.setLocation(playerX + 1, playerY); break;
                 }
-                info();
+                views.get(0).room(getActualRoom());
+                getActualRoom().action(player, views);
+
                 return;
             }
         }
@@ -56,13 +65,6 @@ public class Dungeon {
         [ ][ ][ ][ ][ ][ ][.][ ][ ]
 */
 
-
-    public String info(){
-        String dialogue = "";
-        dialogue += "tu es actuellement dans une " + getActualRoom().description();
-        System.out.println(dialogue);
-        return dialogue;
-    }
 
     private void generation(){
         rooms = new RoomType[9][6];

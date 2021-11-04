@@ -11,16 +11,28 @@ public class Orc implements Monster{
 
     @Override
     public int getHp() {
-        return 0;
+        return hp;
     }
 
     @Override
     public int getStrength() {
-        return 0;
+        return strength;
     }
 
     @Override
     public String getName() {
         return "Orc";
     }
+
+    @Override
+    public boolean isAlive(){
+        return getHp() > 0;
+    }
+
+    @Override
+    public void takeDammage(int dammage) {
+        hp = hp - dammage;
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package model.loot;
 
+import model.Player;
+
 public class Weapon implements Loot{
 
     private int value;
@@ -11,6 +13,11 @@ public class Weapon implements Loot{
 
     @Override
     public int getValue() {
-        return 0;
+        return value;
+    }
+
+    @Override
+    public void action(Player player) {
+        player.strench += getValue();
     }
 }

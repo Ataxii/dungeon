@@ -2,12 +2,12 @@ package model;
 
 import model.loot.Loot;
 
-public class Inventaire {
+public class Inventory {
     private Loot[] loots;
     private int size;
     private int capacity;
 
-    public Inventaire(int capacity) {
+    public Inventory(int capacity) {
         this.loots = new Loot[capacity];
         this.size = 0;
         this.capacity = capacity;

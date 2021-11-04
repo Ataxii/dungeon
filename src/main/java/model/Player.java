@@ -1,15 +1,9 @@
 package model;
 
-import com.sun.javafx.scene.traversal.Direction;
-import view.ConsoleView;
-import view.View;
-
-import javax.swing.text.Position;
-
 public class Player {
     public int strench;
     public int health;
-    public Inventaire inventaire;
+    public Inventory inventaire;
 
     /**
      * constructeur d'un playeur compsé d'un inventaire vide, une force et d'un nombre de hp
@@ -19,7 +13,15 @@ public class Player {
     public Player(int strench, int health) {
         this.strench = strench;
         this.health = health;
-        this.inventaire = new Inventaire(10);
+        this.inventaire = new Inventory(10);
+    }
+
+    public boolean isAlive(){
+        return health > 0;
+    }
+
+    public void takeDammage(int dammage){
+        health = health - dammage;
     }
 
 }

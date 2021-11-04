@@ -3,10 +3,13 @@ package model.room;
 
 
 import model.Direction;
+import model.Player;
 import model.loot.Loot;
 import model.loot.Potion;
 import model.loot.Weapon;
+import view.View;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class LootRoom implements RoomType{
@@ -38,5 +41,13 @@ public class LootRoom implements RoomType{
     @Override
     public Direction[] getDirections() {
         return directions;
+    }
+
+    @Override
+    public void action(Player player, ArrayList<View> views) {
+        loot.action(player);
+        for (View view : views) {
+            view.looting(player, loot);
+        }
     }
 }

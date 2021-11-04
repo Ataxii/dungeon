@@ -1,5 +1,6 @@
 package controller;
 
+import com.sun.javafx.fxml.builder.URLBuilder;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +11,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.Dungeon;
 import model.Player;
+import view.ConsoleView;
 import view.JavaFXView;
 import view.View;
 
@@ -39,19 +42,26 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+
+
+
         Dungeon dungeon = new Dungeon();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(App.class.getResource("src/main/java/view/Screen.fxml"));
-        BorderPane rootLayout = (BorderPane) loader.load();
-        final Scene scene = new Scene(rootLayout, 300, 250);
-        primaryStage.setScene(scene);
-
-
         JavaFXController javaFXController = new JavaFXController(dungeon);
+        Group root = new Group();
+
+        /**
+        URL url1 = getClass().getResource("Screen.fxml");
+        // Création du loader.
+        final FXMLLoader fxmlLoader = new FXMLLoader(url1);
+        // Chargement du FXML.
+        final AnchorPane root = fxmlLoader.load();
+        // Création de la scène. **/
+        final Scene scene = new Scene(root, 300, 250);
+
+
         scene.setOnKeyPressed(javaFXController.eventHandler);
-
-
         primaryStage.setScene(scene);
+
         primaryStage.show();
 
     }
