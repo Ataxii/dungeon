@@ -1,12 +1,24 @@
 package model.monster;
 
+import java.util.Random;
+
 public class Orc implements Monster{
     private int hp;
-    private int strength;
+    private final int strength;
 
     public Orc(int hp, int strength) {
         this.hp = hp;
         this.strength = strength;
+    }
+
+    //génération aléatoir
+    public Orc(){
+        Random rand = new Random();
+        int hp = rand.nextInt(170 - 100 + 1) + 100;
+        this.hp = hp;
+        int strength = rand.nextInt(25 - 5 + 1) + 5;
+        this.strength = strength;
+
     }
 
     @Override

@@ -22,19 +22,22 @@ public class ConsoleView implements View {
 
     @Override
     public void fight(Player player, Monster monster) {
+        System.out.println("le monstre que vous allez combatre a " + monster.getStrength() +
+                "de force et " + monster.getHp() + " de vie");
+
         if (monster.isAlive()){
             System.out.println("Vous avez malheureusement perdu le combat :(");
         }
         else {
             System.out.println("Vous avez gagné le combat !!! Vous avez donc " + player.health + " de vie et "
-            + player.strench + " de force");
+            + player.strength + " de force");
         }
     }
 
     @Override
     public void looting(Player player, Loot loot) {
-        System.out.println("Vous avez récupéré : " + loot.getName());
-        System.out.println("Votre personnage a donc une vie de : " + player.health + " et une force de : " + player.strench);
+        System.out.println("Vous avez récupéré : " + loot.getName() + "avec une value de : " + loot.getValue());
+        System.out.println("Votre personnage a donc une vie de : " + player.health + " et une force de : " + player.strength);
     }
 
 

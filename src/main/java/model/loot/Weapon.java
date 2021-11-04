@@ -2,9 +2,12 @@ package model.loot;
 
 import model.Player;
 
-public class Weapon implements Loot{
+import java.util.Random;
 
-    private int value;
+public class Weapon implements Loot{
+    Random rand = new Random();
+    int value = rand.nextInt(20 - 10 + 1) + 10;
+
 
     @Override
     public String getName() {
@@ -18,6 +21,6 @@ public class Weapon implements Loot{
 
     @Override
     public void action(Player player) {
-        player.strench += getValue();
+        player.strength += getValue();
     }
 }

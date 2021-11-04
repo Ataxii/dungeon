@@ -18,7 +18,7 @@ public class Dungeon {
     public Point2D playerPosition;
     public ArrayList<View> views;
 
-
+//TODO : mettre en place un systeme d'utilisation de potion stocké
     public Dungeon() {
         this.player = new Player(10, 600);
         generation();

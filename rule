@@ -1,0 +1,22 @@
+player = 600 hp
+         10 strength
+
+
+Monster = orc  = 100 - 170 hp
+                 5 - 25 strength
+          giant = 300 - 400 hp
+                  10 - 30 strength
+
+loot = potion 40 - 80 hp
+       weapon 10 - 20 strength
+       easteregg = weapon, name = god of blade, strength = 20000
+
+
+a modifier :
+    systeme des salles, trouver une autre idée
+
+
+idées :
+    mettre un systeme de coup critique
+                         pouvoir
+    LVL des boss avec application de multiplicateur sur les stats

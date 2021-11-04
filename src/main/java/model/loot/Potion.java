@@ -2,8 +2,12 @@ package model.loot;
 
 import model.Player;
 
+import java.util.Random;
+
 public class Potion implements Loot{
-    private int value;
+    Random rand = new Random();
+    int value = rand.nextInt(80 - 40 + 1) + 40;
+
 
 
     @Override
@@ -13,7 +17,7 @@ public class Potion implements Loot{
 
     @Override
     public int getValue() {
-        return 0;
+        return value;
     }
 
     @Override

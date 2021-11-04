@@ -1,17 +1,17 @@
 package model;
 
 public class Player {
-    public int strench;
+    public int strength;
     public int health;
     public Inventory inventaire;
 
     /**
      * constructeur d'un playeur compsé d'un inventaire vide, une force et d'un nombre de hp
-     * @param strench int pour la force
+     * @param strength int pour la force
      * @param health int pour le nombre de hp
      */
-    public Player(int strench, int health) {
-        this.strench = strench;
+    public Player(int strength, int health) {
+        this.strength = strength;
         this.health = health;
         this.inventaire = new Inventory(10);
     }

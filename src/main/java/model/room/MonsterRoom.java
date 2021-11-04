@@ -38,8 +38,8 @@ public class MonsterRoom implements RoomType {
     @Override
     public void action(Player player, ArrayList<View> views) {
         while (player.isAlive() && monster.isAlive()) {
-            if (player.strench > monster.getStrength()) {
-                monster.takeDammage(player.strench);
+            if (player.strength > monster.getStrength()) {
+                monster.takeDammage(player.strength);
                 //a une chance d'attaquer
                 Random random = new Random();
                 if (random.nextBoolean()) {
@@ -50,12 +50,12 @@ public class MonsterRoom implements RoomType {
                 if (random.nextBoolean()) {
                     player.takeDammage(monster.getStrength());
                 }
-                monster.takeDammage(player.strench);
+                monster.takeDammage(player.strength);
             }
         }
         //récompense si le montre etait plus fort
-        if (monster.getStrength() > player.strench){
-            player.strench = player.strench + (monster.getStrength() - player.strench);
+        if (monster.getStrength() > player.strength){
+            player.strength = player.strength + (monster.getStrength() - player.strength);
         }
         for (View view : views) {
             view.fight(player, monster);
