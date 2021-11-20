@@ -54,7 +54,7 @@ public class Inventory {
     public void movePosition(Direction direction) {
         switch (direction){
             case LEFT : if(position != 0){ position--;}; break;
-            case RIGHT: if(position != getSize()){position++;}; break;
+            case RIGHT: if(position != getSize() - 1){position++;}; break;
         }
 
     }
@@ -67,5 +67,9 @@ public class Inventory {
         Loot lootResult = loots.get(position);
         remove(lootResult);
         return lootResult;
+    }
+
+    public void resetPosition() {
+        position = 0;
     }
 }

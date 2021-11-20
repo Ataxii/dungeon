@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import model.Direction;
 import model.Dungeon;
+import view.View;
 
 public class JavaFXController {
 
@@ -44,10 +45,10 @@ public class JavaFXController {
                     case D:
                         dungeon.player.inventory.movePosition(Direction.RIGHT); dungeon.printInventory(); break;
 
-                    case ENTER: dungeon.player.takeHeal(); dungeon.printInventory(); break;
+                    case ENTER: dungeon.player.takeHeal();dungeon.player.inventory.resetPosition(); dungeon.printInventory(); break;
 
                     //on sort de la phase de selection avec l'utilisateur
-                    case E: inventoryphase = false; break;
+                    case E: inventoryphase = false; dungeon.views.get(0).makeSplit(); dungeon.views.get(0).room(dungeon.getActualRoom()); break;
                 }
             }
         }

@@ -8,7 +8,13 @@ import model.loot.Loot;
 import model.monster.Monster;
 import model.room.RoomType;
 
-public class ConsoleView implements View {
+import java.io.PrintStream;
+
+
+public class ConsoleView<ConsoleReader> implements View {
+
+
+    PrintStream print = new PrintStream(System.out);
 
     @Override
     public void handleMove(Move move){
@@ -29,7 +35,7 @@ public class ConsoleView implements View {
     @Override
     public void fight(Player player, Monster monster) {
         System.out.println("Le monstre que vous allez combatre a " + monster.getStrength() +
-                " de force et " + monster.getHp() + " de vie");
+                " de force et " + monster.getLife() + " de vie");
 
         if (monster.isAlive()){
             System.out.println("Vous avez malheureusement perdu le combat :(");
@@ -47,40 +53,34 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public void makeSplit() {
-        System.out.println("--------------------------\n\n");
+    public void makeSplit(){
+        System.out.println("--------------------------\n\n\n\n\n\n\n\n\n\n");
+
     }
 
     @Override
     public void inventory(Dungeon dungeon) {
-
+        makeSplit();
         String selection = "";
         int i = 0;
         if(dungeon.player.inventory.isEmpty()){
             System.out.println("Ton inventaire est vide!");
-            System.out.println("[e] pour sortir");
         }
         else {
+            System.out.println("Tu as " + dungeon.player.health + "/" + dungeon.player.getMaxHealth() + " hp");
             for (Loot loot : dungeon.player.inventory.getLoots()) {
 
                 if(dungeon.player.inventory.getPosition() == i){
                     selection += "{" + i + "}" + " : " + loot.getName() + " de " + loot.getValue() + " hp || ";
                 }
                 else {
-                    selection += i + " : " + loot.getName() + " de " + loot.getValue() + " hp";
+                    selection += i + " : " + loot.getName() + " de " + loot.getValue() + " hp || ";
                 }
 
                 i ++;
             }
             System.out.println(selection);
         }
-
-
+        System.out.println("[e] pour sortir");
     }
-
-
-
-
-
-
 }

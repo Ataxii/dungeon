@@ -8,6 +8,7 @@ import model.monster.Monster;
 import model.room.RoomType;
 
 import java.awt.geom.Point2D;
+import java.io.IOException;
 
 public interface View {
     void handleMove(Move move);

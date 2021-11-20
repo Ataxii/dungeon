@@ -37,6 +37,9 @@ public class Dungeon {
                 //quand le player bouge on change playerPosition avec les 4 differents cas
                 int playerX = (int) playerPosition.getX();
                 int playerY = (int) playerPosition.getY();
+                //vu que le joueur est deja passé sur la room, on la set comme une empty room
+                rooms[(int) playerPosition.getX()][(int) playerPosition.getY()] = new EmptyRoom(getActualRoom().getDirections());
+
                 switch (direction) {
                     case UP:    playerPosition.setLocation(playerX, playerY - 1); break;
                     case DOWN:  playerPosition.setLocation(playerX, playerY + 1); break;
@@ -61,7 +64,6 @@ public class Dungeon {
     }
 
     public RoomType getActualRoom() {
-
         return rooms[(int) playerPosition.getX()][(int) playerPosition.getY()];
     }
 

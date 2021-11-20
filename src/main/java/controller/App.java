@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Dungeon;
 import model.Player;
+import model.loot.Potion;
 import view.JavaFXView;
 import view.View;
 
@@ -40,6 +41,8 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Dungeon dungeon = new Dungeon();
+        dungeon.player.inventory.addLoot(new Potion());
+        dungeon.player.inventory.addLoot(new Potion());
         JavaFXController javaFXController = new JavaFXController(dungeon);
         Group root = new Group();
 

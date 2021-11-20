@@ -6,4 +6,5 @@ public interface Monster {
     public String getName();
     public boolean isAlive();
     public void takeDammage(int dammage);
+    int getLife();
 }

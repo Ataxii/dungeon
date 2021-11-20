@@ -28,6 +28,10 @@ public class Player {
         health = health - dammage;
     }
 
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
     public void takeHeal(){
 
         Loot potion = inventory.use();

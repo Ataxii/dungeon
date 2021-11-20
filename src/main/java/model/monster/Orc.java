@@ -4,11 +4,13 @@ import java.util.Random;
 
 public class Orc implements Monster{
     private int hp;
+    private int life;
     private final int strength;
 
     public Orc(int hp, int strength) {
         this.hp = hp;
         this.strength = strength;
+        this.life = hp;
     }
 
     //génération aléatoir
@@ -16,10 +18,13 @@ public class Orc implements Monster{
         Random rand = new Random();
         int hp = rand.nextInt(170 - 100 + 1) + 100;
         this.hp = hp;
+        this.life = hp;
         int strength = rand.nextInt(25 - 5 + 1) + 5;
         this.strength = strength;
 
     }
+
+
 
     @Override
     public int getHp() {
@@ -44,6 +49,11 @@ public class Orc implements Monster{
     @Override
     public void takeDammage(int dammage) {
         hp = hp - dammage;
+    }
+
+    @Override
+    public int getLife() {
+        return life;
     }
 
 
