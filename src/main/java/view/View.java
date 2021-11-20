@@ -1,5 +1,6 @@
 package view;
 
+import model.Dungeon;
 import model.Move;
 import model.Player;
 import model.loot.Loot;
@@ -22,4 +23,7 @@ public interface View {
     //quand on propose d'utiliser une potion
     //...
 
+    void makeSplit();
+
+    void inventory(Dungeon dungeon);
 }

@@ -12,7 +12,7 @@ public class Potion implements Loot{
 
     @Override
     public String getName() {
-        return "heal";
+        return "Heal";
     }
 
     @Override
@@ -22,6 +22,6 @@ public class Potion implements Loot{
 
     @Override
     public void action(Player player) {
-        player.inventaire.addLoot(this);
+        player.inventory.addLoot(this);
     }
 }

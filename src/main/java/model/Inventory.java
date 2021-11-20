@@ -2,19 +2,22 @@ package model;
 
 import model.loot.Loot;
 
+import java.util.ArrayList;
+
 public class Inventory {
-    private Loot[] loots;
-    private int size;
+    private ArrayList<Loot> loots;
+
     private int capacity;
+    private int position; //position du curseur de selection
 
     public Inventory(int capacity) {
-        this.loots = new Loot[capacity];
-        this.size = 0;
+        this.loots = new ArrayList<>();
         this.capacity = capacity;
+        this.position = 0;
     }
 
     public int getSize() {
-        return size;
+        return loots.size();
     }
 
     public boolean isEmpty(){
@@ -30,19 +33,39 @@ public class Inventory {
             return false;
         }
         else {
-            loots[size] = loot;
-            size++;
+            loots.add(loot);
             return true;
         }
     }
 
-    public boolean remove(Loot loot){
+    public ArrayList<Loot> getLoots() {
+        return loots;
+    }
+
+    private boolean remove(Loot loot){
         if (isEmpty()){
             return false;
         }else {
-            loots[size-1] = null;
-            size--;
+            loots.remove(loot);
             return true;
         }
+    }
+
+    public void movePosition(Direction direction) {
+        switch (direction){
+            case LEFT : if(position != 0){ position--;}; break;
+            case RIGHT: if(position != getSize()){position++;}; break;
+        }
+
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public Loot use(){
+        Loot lootResult = loots.get(position);
+        remove(lootResult);
+        return lootResult;
     }
 }

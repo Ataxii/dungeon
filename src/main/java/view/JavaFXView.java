@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.text.*;
+import model.Dungeon;
 import model.Move;
 import model.Player;
 import model.loot.Loot;
@@ -27,6 +28,16 @@ public class JavaFXView implements View{
 
     @Override
     public void looting(Player player, Loot loot) {
+
+    }
+
+    @Override
+    public void makeSplit() {
+
+    }
+
+    @Override
+    public void inventory(Dungeon dungeon) {
 
     }
 }

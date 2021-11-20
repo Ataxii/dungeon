@@ -1,9 +1,12 @@
 package model;
 
+import model.loot.Loot;
+
 public class Player {
     public int strength;
     public int health;
-    public Inventory inventaire;
+    private int maxHealth;
+    public Inventory inventory;
 
     /**
      * constructeur d'un playeur compsé d'un inventaire vide, une force et d'un nombre de hp
@@ -13,7 +16,8 @@ public class Player {
     public Player(int strength, int health) {
         this.strength = strength;
         this.health = health;
-        this.inventaire = new Inventory(10);
+        this.maxHealth = health;
+        this.inventory = new Inventory(10);
     }
 
     public boolean isAlive(){
@@ -22,6 +26,17 @@ public class Player {
 
     public void takeDammage(int dammage){
         health = health - dammage;
+    }
+
+    public void takeHeal(){
+
+        Loot potion = inventory.use();
+        if (health + potion.getValue() > maxHealth){
+            health = maxHealth;
+        }
+        else {
+            health = health + potion.getValue();
+        }
     }
 
 }

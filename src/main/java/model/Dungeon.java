@@ -10,7 +10,10 @@ import view.View;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.Console;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Dungeon {
     public Player player;
@@ -18,7 +21,6 @@ public class Dungeon {
     public Point2D playerPosition;
     public ArrayList<View> views;
 
-//TODO : mettre en place un systeme d'utilisation de potion stocké
     public Dungeon() {
         this.player = new Player(10, 600);
         generation();
@@ -41,12 +43,21 @@ public class Dungeon {
                     case LEFT:  playerPosition.setLocation(playerX - 1, playerY); break;
                     case RIGHT: playerPosition.setLocation(playerX + 1, playerY); break;
                 }
+                views.get(0).makeSplit();
                 views.get(0).room(getActualRoom());
                 getActualRoom().action(player, views);
 
                 return;
             }
         }
+    }
+
+
+    //TODO: quand on a parcouru une salle et qu'on revient dessus cest une empty room
+
+
+    public void printInventory(){
+        views.get(0).inventory(this);
     }
 
     public RoomType getActualRoom() {

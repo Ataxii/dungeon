@@ -1,6 +1,5 @@
 package controller;
 
-import com.sun.javafx.fxml.builder.URLBuilder;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +10,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.Dungeon;
 import model.Player;
-import view.ConsoleView;
 import view.JavaFXView;
 import view.View;
 
@@ -41,9 +38,6 @@ public class App extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-
-
 
         Dungeon dungeon = new Dungeon();
         JavaFXController javaFXController = new JavaFXController(dungeon);
