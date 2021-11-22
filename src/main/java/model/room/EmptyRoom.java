@@ -26,5 +26,6 @@ public class EmptyRoom implements RoomType{
 
     @Override
     public void action(Player player, ArrayList<View> views) {
+        views.get(1).makeSplit();
     }
 }

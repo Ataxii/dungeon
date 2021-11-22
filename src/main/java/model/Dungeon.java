@@ -21,14 +21,14 @@ public class Dungeon {
     public Point2D playerPosition;
     public ArrayList<View> views;
 
-    public Dungeon() {
+    public Dungeon(JavaFXView view) {
         this.player = new Player(10, 600);
         generation();
         playerPosition = new Point();
         playerPosition.setLocation(0,0);
         views = new ArrayList<>();
         views.add(new ConsoleView());
-        views.add(new JavaFXView());
+        views.add(view);
     }
 
     public void movePlayer(Direction direction){
@@ -46,10 +46,11 @@ public class Dungeon {
                     case LEFT:  playerPosition.setLocation(playerX - 1, playerY); break;
                     case RIGHT: playerPosition.setLocation(playerX + 1, playerY); break;
                 }
-                views.get(0).makeSplit();
-                views.get(0).room(getActualRoom());
+                for (View view : views) {
+                    view.makeSplit();
+                    view.room(getActualRoom());
+                }
                 getActualRoom().action(player, views);
-
                 return;
             }
         }
@@ -60,7 +61,9 @@ public class Dungeon {
 
 
     public void printInventory(){
-        views.get(0).inventory(this);
+        for (View view : views) {
+            view.inventory(this);
+        }
     }
 
     public RoomType getActualRoom() {
@@ -78,7 +81,7 @@ public class Dungeon {
         [ ][ ][ ][ ][ ][ ][.][ ][ ]
 */
 
-
+//TODO : corriger le bug
     private void generation(){
         rooms = new RoomType[9][6];
         rooms[0][0] = new EmptyRoom(Direction.RIGHT);
@@ -106,6 +109,8 @@ public class Dungeon {
         rooms[7][4] = new MonsterRoom(Direction.LEFT);
 
     }
+
+
 }
 
 

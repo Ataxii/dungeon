@@ -38,7 +38,6 @@ public class JavaFXController {
             else {
                 switch (event.getCode()) {
                     case LEFT:
-
                     case Q:
                         dungeon.player.inventory.movePosition(Direction.LEFT); dungeon.printInventory(); break;
                     case RIGHT:
@@ -48,7 +47,13 @@ public class JavaFXController {
                     case ENTER: dungeon.player.takeHeal();dungeon.player.inventory.resetPosition(); dungeon.printInventory(); break;
 
                     //on sort de la phase de selection avec l'utilisateur
-                    case E: inventoryphase = false; dungeon.views.get(0).makeSplit(); dungeon.views.get(0).room(dungeon.getActualRoom()); break;
+                    case E: inventoryphase = false;
+                    dungeon.views.get(0).makeSplit();
+                        for (View view:
+                             dungeon.views) {
+                            view.room(dungeon.getActualRoom());
+                        }
+                    break;
                 }
             }
         }

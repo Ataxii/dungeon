@@ -76,7 +76,6 @@ public class ConsoleView<ConsoleReader> implements View {
                 else {
                     selection += i + " : " + loot.getName() + " de " + loot.getValue() + " hp || ";
                 }
-
                 i ++;
             }
             System.out.println(selection);

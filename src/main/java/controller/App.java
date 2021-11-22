@@ -1,23 +1,14 @@
 package controller;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Dungeon;
-import model.Player;
 import model.loot.Potion;
 import view.JavaFXView;
-import view.View;
-
-import java.net.URL;
 
 public class App extends Application {
     /*
@@ -39,30 +30,29 @@ public class App extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        Dungeon dungeon = new Dungeon();
-        dungeon.player.inventory.addLoot(new Potion());
-        dungeon.player.inventory.addLoot(new Potion());
-        JavaFXController javaFXController = new JavaFXController(dungeon);
         Group root = new Group();
 
-        /**
-        URL url1 = getClass().getResource("Screen.fxml");
-        // Création du loader.
-        final FXMLLoader fxmlLoader = new FXMLLoader(url1);
-        // Chargement du FXML.
-        final AnchorPane root = fxmlLoader.load();
-        // Création de la scène. **/
-        final Scene scene = new Scene(root, 300, 250);
 
+        JavaFXView view = new JavaFXView();
+        Text main = view.top;
+        Text inventory = view.inventaire;
+        Text fight = view.middle;
+        Text playerInfo = view.playerInformation;
+        root.getChildren().add(main);
+        root.getChildren().add(inventory);
+        root.getChildren().add(fight);
+        root.getChildren().add(playerInfo);
+
+        root.getChildren().add(new Canvas(800,400));
+        Scene scene = new Scene(root);
+        Dungeon dungeon = new Dungeon(view);
+        dungeon.player.inventory.addLoot(new Potion());
+        JavaFXController javaFXController = new JavaFXController(dungeon);
 
         scene.setOnKeyPressed(javaFXController.eventHandler);
         primaryStage.setScene(scene);
 
         primaryStage.show();
-
+        view.updatePlayer(dungeon.player);
     }
-
-
-
 }
