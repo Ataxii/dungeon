@@ -19,6 +19,7 @@ public class JavaFXView implements View{
 
     public void updatePlayer(Player player){
         playerInformation.setText("Player : " + player.health + "/" + player.getMaxHealth() + " hp");
+
     }
 
     public void handleMove(Move move){
