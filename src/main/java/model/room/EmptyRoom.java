@@ -16,7 +16,7 @@ public class EmptyRoom implements RoomType{
 
     @Override
     public String description() {
-        return "EmptyRoom";
+        return "salle vide";
     }
 
     @Override

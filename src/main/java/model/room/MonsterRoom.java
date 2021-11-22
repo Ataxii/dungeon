@@ -64,7 +64,7 @@ public class MonsterRoom implements RoomType {
 
     @Override
     public String description() {
-        return "MonsterRoom avec un " + monster.getName();
+        return "salle avec un " + monster.getName();
     }
 
 }

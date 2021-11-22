@@ -15,10 +15,11 @@ public class JavaFXView implements View{
     public Text playerInformation = new Text(300, 20, "");
     public Text top = new Text(100,100,"Bienvenue dans ce donjon.\n bonne chance pour cette aventure et en esperent que vous surviviez...");
     public Text middle = new Text(100, 200, "");
-    public Text inventaire = new Text(100 , 300, "[e] ouvir l'inventaire");
+    public Text commandes = new Text(100 , 300, "[e] Ouvir l'inventaire\n [zqsd] Se déplacer");
 
     public void updatePlayer(Player player){
-        playerInformation.setText("Player : " + player.health + "/" + player.getMaxHealth() + " hp");
+        playerInformation.setText("Player : " + player.health + "/" + player.getMaxHealth() + " hp || "
+                + player.strength + " de force");
 
     }
 
@@ -35,7 +36,7 @@ public class JavaFXView implements View{
             dialogue += "   -" + direction.name() + "\n";
         }
         this.top.setText(dialogue);
-        inventaire.setText("[e] ouvir l'inventaire");
+        commandes.setText("[e] ouvir l'inventaire\n [zqsd] Se déplacer");
 
     }
 
@@ -49,8 +50,7 @@ public class JavaFXView implements View{
             dialogue += "Vous avez malheureusement perdu le combat :(\n";
         }
         else {
-            dialogue += "Vous avez gagné le combat !!! Vous avez donc " + player.health + " de vie et "
-                    + player.strength + " de force\n";
+            dialogue += "Vous avez gagné le combat !!!";
         }
         this.middle.setText(dialogue);
         updatePlayer(player);
@@ -94,7 +94,7 @@ public class JavaFXView implements View{
         }
 
         top.setText(dialoque);
-        inventaire.setText("[e] fermer inventaire\n" + "[enter] selectionné");
+        commandes.setText("[e] fermer inventaire\n" + "[enter] selectionné");
 
         updatePlayer(dungeon.player);
     }

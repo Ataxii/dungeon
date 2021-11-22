@@ -71,7 +71,7 @@ public class Dungeon {
     Generation du donjon deja faites
      */
     private void generation(){
-        rooms = new RoomType[9][6];
+        rooms = new RoomType[9][9];
         rooms[0][0] = new EmptyRoom(Direction.RIGHT);
         rooms[1][0] = new LootRoom(Direction.RIGHT, Direction.LEFT, Direction.DOWN);
         rooms[2][0] = new EmptyRoom(Direction.RIGHT, Direction.LEFT);

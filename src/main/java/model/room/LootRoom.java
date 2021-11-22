@@ -35,7 +35,7 @@ public class LootRoom implements RoomType{
 
     @Override
     public String description() {
-        return "lootRoom";
+        return "salle avec du loot";
     }
 
     @Override

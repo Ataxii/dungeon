@@ -35,7 +35,7 @@ public class App extends Application {
 
         JavaFXView view = new JavaFXView();
         Text main = view.top;
-        Text inventory = view.inventaire;
+        Text inventory = view.commandes;
         Text fight = view.middle;
         Text playerInfo = view.playerInformation;
         root.getChildren().add(main);
