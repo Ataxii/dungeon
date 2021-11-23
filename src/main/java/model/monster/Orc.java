@@ -24,8 +24,6 @@ public class Orc implements Monster{
 
     }
 
-
-
     @Override
     public int getHp() {
         return hp;

@@ -29,30 +29,31 @@ public class App extends Application {
      * @throws Exception if something goes wrong
      */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         Group root = new Group();
-
-
         JavaFXView view = new JavaFXView();
         Text main = view.top;
         Text inventory = view.commandes;
         Text fight = view.middle;
         Text playerInfo = view.playerInformation;
+
         root.getChildren().add(main);
         root.getChildren().add(inventory);
         root.getChildren().add(fight);
         root.getChildren().add(playerInfo);
 
         root.getChildren().add(new Canvas(800,400));
+
         Scene scene = new Scene(root);
         Dungeon dungeon = new Dungeon(view);
         dungeon.player.inventory.addLoot(new Potion());
+
         JavaFXController javaFXController = new JavaFXController(dungeon);
 
         scene.setOnKeyPressed(javaFXController.eventHandler);
         primaryStage.setScene(scene);
-
         primaryStage.show();
+
         view.updatePlayer(dungeon.player);
     }
 }

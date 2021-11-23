@@ -8,11 +8,9 @@ public class Potion implements Loot{
     Random rand = new Random();
     int value = rand.nextInt(80 - 40 + 1) + 40;
 
-
-
     @Override
     public String getName() {
-        return "Heal";
+        return "Potion de vie";
     }
 
     @Override

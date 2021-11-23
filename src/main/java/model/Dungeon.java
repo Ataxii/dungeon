@@ -1,23 +1,17 @@
 package model;
 
-import model.room.EmptyRoom;
-import model.room.LootRoom;
-import model.room.MonsterRoom;
-import model.room.RoomType;
+import model.room.*;
 import view.ConsoleView;
 import view.JavaFXView;
 import view.View;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.io.Console;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Dungeon {
     public Player player;
-    public RoomType[][] rooms;
+    public Room[][] rooms;
     public Point2D playerPosition;
     public ArrayList<View> views;
 
@@ -41,10 +35,10 @@ public class Dungeon {
                 rooms[(int) playerPosition.getX()][(int) playerPosition.getY()] = new EmptyRoom(getActualRoom().getDirections());
 
                 switch (direction) {
-                    case UP:    playerPosition.setLocation(playerX, playerY - 1); break;
-                    case DOWN:  playerPosition.setLocation(playerX, playerY + 1); break;
-                    case LEFT:  playerPosition.setLocation(playerX - 1, playerY); break;
-                    case RIGHT: playerPosition.setLocation(playerX + 1, playerY); break;
+                    case HAUT:    playerPosition.setLocation(playerX, playerY - 1); break;
+                    case BAS:  playerPosition.setLocation(playerX, playerY + 1); break;
+                    case GAUCHE:  playerPosition.setLocation(playerX - 1, playerY); break;
+                    case DROITE: playerPosition.setLocation(playerX + 1, playerY); break;
                 }
                 for (View view : views) {
                     view.makeSplit();
@@ -62,7 +56,7 @@ public class Dungeon {
         }
     }
 
-    public RoomType getActualRoom() {
+    public Room getActualRoom() {
         return rooms[(int) playerPosition.getX()][(int) playerPosition.getY()];
     }
 
@@ -71,42 +65,41 @@ public class Dungeon {
     Generation du donjon deja faites
      */
     private void generation(){
-        rooms = new RoomType[9][9];
-        rooms[0][0] = new EmptyRoom(Direction.RIGHT);
-        rooms[1][0] = new LootRoom(Direction.RIGHT, Direction.LEFT, Direction.DOWN);
-        rooms[2][0] = new EmptyRoom(Direction.RIGHT, Direction.LEFT);
-        rooms[3][0] = new EmptyRoom(Direction.RIGHT, Direction.LEFT);
-        rooms[4][0] = new MonsterRoom(Direction.LEFT, Direction.DOWN);
-        rooms[1][1] = new EmptyRoom(Direction.DOWN, Direction.UP);
-        rooms[1][2] = new LootRoom(Direction.RIGHT, Direction.UP);
-        rooms[2][2] = new MonsterRoom(Direction.RIGHT, Direction.LEFT);
-        rooms[3][2] = new EmptyRoom(Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.UP);
-        rooms[3][3] = new MonsterRoom(Direction.UP);
-        rooms[4][2] = new MonsterRoom(Direction.LEFT, Direction.RIGHT);
-        rooms[3][1] = new EmptyRoom(Direction.RIGHT, Direction.DOWN);
-        rooms[4][1] = new MonsterRoom(Direction.RIGHT, Direction.LEFT, Direction.UP);
-        rooms[5][1] = new EmptyRoom(Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.UP);
-        rooms[5][0] = new MonsterRoom(Direction.DOWN);
-        rooms[5][2] = new EmptyRoom(Direction.DOWN, Direction.LEFT, Direction.UP, Direction.RIGHT);
-        rooms[5][3] = new EmptyRoom(Direction.UP);
-        rooms[6][1] = new LootRoom(Direction.LEFT);
-        rooms[6][2] = new EmptyRoom(Direction.DOWN, Direction.LEFT);
-        rooms[6][3] = new EmptyRoom(Direction.DOWN, Direction.RIGHT, Direction.UP);
-        rooms[6][4] = new EmptyRoom(Direction.DOWN, Direction.RIGHT, Direction.UP);
-        rooms[6][5] = new MonsterRoom(Direction.UP);
-        rooms[7][3] = new MonsterRoom(Direction.LEFT);
-        rooms[7][4] = new MonsterRoom(Direction.LEFT);
-        rooms[4][5] = new MonsterRoom(Direction.UP);
-        rooms[4][4] = new LootRoom(Direction.DOWN, Direction.LEFT);
-        rooms[3][4] = new LootRoom(Direction.LEFT, Direction.RIGHT);
-        rooms[2][4] = new LootRoom(Direction.DOWN,Direction.RIGHT);
-        rooms[2][5] = new MonsterRoom(Direction.DOWN, Direction.UP, Direction.RIGHT);
-        rooms[2][6] = new MonsterRoom(Direction.DOWN, Direction.LEFT, Direction.UP);
-        rooms[2][7] = new MonsterRoom(Direction.UP);
-        rooms[3][5] = new EmptyRoom(Direction.LEFT);
-        rooms[1][6] = new EmptyRoom(Direction.RIGHT);
-        rooms[5][3] = new LootRoom(Direction.LEFT);
-
+        rooms = new Room[9][9];
+        rooms[0][0] = new EmptyRoom(Direction.DROITE);
+        rooms[1][0] = new LootRoom(Direction.DROITE, Direction.GAUCHE, Direction.BAS);
+        rooms[2][0] = new EmptyRoom(Direction.DROITE, Direction.GAUCHE);
+        rooms[3][0] = new EmptyRoom(Direction.DROITE, Direction.GAUCHE);
+        rooms[4][0] = new MonsterRoom(Direction.GAUCHE, Direction.BAS);
+        rooms[1][1] = new EmptyRoom(Direction.BAS, Direction.HAUT);
+        rooms[1][2] = new LootRoom(Direction.DROITE, Direction.HAUT);
+        rooms[2][2] = new MonsterRoom(Direction.DROITE, Direction.GAUCHE);
+        rooms[3][2] = new EmptyRoom(Direction.DROITE, Direction.GAUCHE, Direction.BAS, Direction.HAUT);
+        rooms[3][3] = new MonsterRoom(Direction.HAUT, Direction.BAS);
+        rooms[4][2] = new MonsterRoom(Direction.GAUCHE, Direction.DROITE);
+        rooms[3][1] = new EmptyRoom(Direction.DROITE, Direction.BAS);
+        rooms[4][1] = new MonsterRoom(Direction.DROITE, Direction.GAUCHE, Direction.HAUT);
+        rooms[5][1] = new EmptyRoom(Direction.DROITE, Direction.GAUCHE, Direction.BAS, Direction.HAUT);
+        rooms[5][0] = new MonsterRoom(Direction.BAS);
+        rooms[5][2] = new EmptyRoom(Direction.BAS, Direction.GAUCHE, Direction.HAUT, Direction.DROITE);
+        rooms[5][3] = new EmptyRoom(Direction.HAUT);
+        rooms[6][1] = new LootRoom(Direction.GAUCHE);
+        rooms[6][2] = new EmptyRoom(Direction.BAS, Direction.GAUCHE);
+        rooms[6][3] = new EmptyRoom(Direction.BAS, Direction.DROITE, Direction.HAUT);
+        rooms[6][4] = new EmptyRoom(Direction.BAS, Direction.DROITE, Direction.HAUT);
+        rooms[6][5] = new MonsterRoom(Direction.HAUT);
+        rooms[7][3] = new MonsterRoom(Direction.GAUCHE);
+        rooms[7][4] = new MonsterRoom(Direction.GAUCHE);
+        rooms[4][5] = new MonsterRoom(Direction.HAUT);
+        rooms[4][4] = new LootRoom(Direction.BAS, Direction.GAUCHE);
+        rooms[3][4] = new LootRoom(Direction.GAUCHE, Direction.DROITE);
+        rooms[2][4] = new LootRoom(Direction.BAS,Direction.DROITE);
+        rooms[2][5] = new MonsterRoom(Direction.BAS, Direction.HAUT, Direction.DROITE);
+        rooms[2][6] = new MonsterRoom(Direction.BAS, Direction.GAUCHE, Direction.HAUT);
+        rooms[2][7] = new MonsterRoom(Direction.HAUT);
+        rooms[3][5] = new EmptyRoom(Direction.GAUCHE);
+        rooms[1][6] = new EmptyRoom(Direction.DROITE);
+        rooms[5][3] = new LootRoom(Direction.HAUT);
     }
 
 

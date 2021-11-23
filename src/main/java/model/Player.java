@@ -5,11 +5,11 @@ import model.loot.Loot;
 public class Player {
     public int strength;
     public int health;
-    private int maxHealth;
+    private final int maxHealth;
     public Inventory inventory;
 
     /**
-     * constructeur d'un playeur compsé d'un inventaire vide, une force et d'un nombre de hp
+     * Constructeur d'un player composé d'un inventaire vide, une force et d'un nombre de hp
      * @param strength int pour la force
      * @param health int pour le nombre de hp
      */
@@ -24,8 +24,8 @@ public class Player {
         return health > 0;
     }
 
-    public void takeDammage(int dammage){
-        health = health - dammage;
+    public void takeDamages(int damages){
+        health = health - damages;
     }
 
     public int getMaxHealth() {
@@ -33,14 +33,7 @@ public class Player {
     }
 
     public void takeHeal(){
-
         Loot potion = inventory.use();
-        if (health + potion.getValue() > maxHealth){
-            health = maxHealth;
-        }
-        else {
-            health = health + potion.getValue();
-        }
+        health = Math.min(health + potion.getValue(), maxHealth);
     }
-
 }

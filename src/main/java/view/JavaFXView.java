@@ -7,7 +7,7 @@ import model.Move;
 import model.Player;
 import model.loot.Loot;
 import model.monster.Monster;
-import model.room.RoomType;
+import model.room.Room;
 
 public class JavaFXView implements View{
 
@@ -28,14 +28,14 @@ public class JavaFXView implements View{
     }
 
     @Override
-    public void room(RoomType roomType) {
-        String dialogue = "";
-        dialogue += "Tu es actuellement dans une " + roomType.description() + ", tu peux aller :\n";
+    public void room(Room roomType) {
+        StringBuilder dialogue = new StringBuilder();
+        dialogue.append("Tu es actuellement dans une ").append(roomType.description()).append(", tu peux aller :\n");
         for (Direction direction:
                 roomType.getDirections()) {
-            dialogue += "   -" + direction.name() + "\n";
+            dialogue.append("   -").append(direction.name()).append("\n");
         }
-        this.top.setText(dialogue);
+        this.top.setText(dialogue.toString());
         commandes.setText("[e] ouvir l'inventaire\n [zqsd] Se déplacer");
 
     }
@@ -43,7 +43,7 @@ public class JavaFXView implements View{
     @Override
     public void fight(Player player, Monster monster) {
         String dialogue = "";
-        dialogue += "Le monstre que vous allez combatre a " + monster.getStrength() +
+        dialogue += "Le monstre que vous allez combattre a " + monster.getStrength() +
                 " de force et " + monster.getLife() + " de vie\n";
 
         if (monster.isAlive()){
@@ -62,6 +62,7 @@ public class JavaFXView implements View{
         dialogue += "Vous avez récupéré : " + loot.getName() + " avec une value de : " + loot.getValue() + "\n";
         dialogue += "Votre personnage a une vie de : " + player.health + " et une force de : " + player.strength + "\n";
         this.middle.setText(dialogue);
+        updatePlayer(player);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class JavaFXView implements View{
     @Override
     public void inventory(Dungeon dungeon) {
         makeSplit();
-        String selection = "";
+        StringBuilder selection = new StringBuilder();
         String dialoque = "";
         int i = 0;
         if(dungeon.player.inventory.isEmpty()){
@@ -83,10 +84,10 @@ public class JavaFXView implements View{
             for (Loot loot : dungeon.player.inventory.getLoots()) {
 
                 if(dungeon.player.inventory.getPosition() == i){
-                    selection += "{" + i + "}" + " : " + loot.getName() + " de " + loot.getValue() + " hp || ";
+                    selection.append("{").append(i).append("}").append(" : ").append(loot.getName()).append(" de ").append(loot.getValue()).append(" hp || ");
                 }
                 else {
-                    selection += i + " : " + loot.getName() + " de " + loot.getValue() + " hp || ";
+                    selection.append(i).append(" : ").append(loot.getName()).append(" de ").append(loot.getValue()).append(" hp || ");
                 }
                 i ++;
             }

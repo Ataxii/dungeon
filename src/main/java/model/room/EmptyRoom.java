@@ -7,21 +7,15 @@ import view.View;
 
 import java.util.ArrayList;
 
-public class EmptyRoom implements RoomType{
-    public Direction[] directions;
+public class EmptyRoom extends Room {
 
     public EmptyRoom(Direction... directions) {
-        this.directions = directions;
+        super(directions);
     }
 
     @Override
     public String description() {
         return "salle vide";
-    }
-
-    @Override
-    public Direction[] getDirections() {
-        return directions;
     }
 
     @Override

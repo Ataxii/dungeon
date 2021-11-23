@@ -11,7 +11,7 @@ public class Weapon implements Loot{
 
     @Override
     public String getName() {
-        return "weapon";
+        return "arme";
     }
 
     @Override

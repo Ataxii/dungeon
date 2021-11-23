@@ -10,29 +10,13 @@ import view.View;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MonsterRoom implements RoomType {
-    private Monster monster;
-    private final Direction[] directions;
+public class MonsterRoom extends Room {
+    private final Monster monster;
 
     public MonsterRoom(Direction... directions) {
-        this.monster = new Orc(100, 13);
-        this.directions = directions;
-    }
+        super(directions);
+        this.monster = new Orc();
 
-    public Monster getMonster() {
-        return monster;
-    }
-
-    public void killMonster() {
-        monster = null;
-    }
-
-    public boolean isFighted() {
-        return monster == null;
-    }
-
-    public Direction[] getDirections() {
-        return directions;
     }
 
     @Override
@@ -43,12 +27,12 @@ public class MonsterRoom implements RoomType {
                 //a une chance d'attaquer
                 Random random = new Random();
                 if (random.nextBoolean()) {
-                    player.takeDammage(monster.getStrength());
+                    player.takeDamages(monster.getStrength());
                 }
             } else {
                 Random random = new Random();
                 if (random.nextBoolean()) {
-                    player.takeDammage(monster.getStrength());
+                    player.takeDamages(monster.getStrength());
                 }
                 monster.takeDammage(player.strength);
             }

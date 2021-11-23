@@ -4,8 +4,8 @@ import model.Player;
 
 public interface Loot {
 
-    public String getName();
-    public int getValue();
-    public void action(Player player);
+    String getName();
+    int getValue();
+    void action(Player player);
 
 }

@@ -6,7 +6,7 @@ import model.Move;
 import model.Player;
 import model.loot.Loot;
 import model.monster.Monster;
-import model.room.RoomType;
+import model.room.Room;
 
 import java.io.PrintStream;
 
@@ -22,7 +22,7 @@ public class ConsoleView<ConsoleReader> implements View {
     }
 
     @Override
-    public void room(RoomType roomType) {
+    public void room(Room roomType) {
         String dialogue = "";
         dialogue += "Tu es actuellement dans une " + roomType.description() + ", tu peux aller :\n";
         for (Direction direction:

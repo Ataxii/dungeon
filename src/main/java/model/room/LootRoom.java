@@ -12,13 +12,12 @@ import view.View;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class LootRoom implements RoomType{
+public class LootRoom extends Room {
     private final Loot loot;
-    public Direction[] directions;
 
     public LootRoom(Direction... directions) {
+        super(directions);
         this.loot = generationLoot();
-        this.directions = directions;
     }
 
     private Loot generationLoot() {
@@ -29,19 +28,11 @@ public class LootRoom implements RoomType{
         else return new Potion();
     }
 
-    public Loot getLoot() {
-        return loot;
-    }
-
     @Override
     public String description() {
         return "salle avec du loot";
     }
 
-    @Override
-    public Direction[] getDirections() {
-        return directions;
-    }
 
     @Override
     public void action(Player player, ArrayList<View> views) {

@@ -5,9 +5,9 @@ import model.loot.Loot;
 import java.util.ArrayList;
 
 public class Inventory {
-    private ArrayList<Loot> loots;
+    private final ArrayList<Loot> loots;
 
-    private int capacity;
+    private final int capacity;
     private int position; //position du curseur de selection
 
     public Inventory(int capacity) {
@@ -28,13 +28,9 @@ public class Inventory {
         return getSize() == capacity;
     }
 
-    public boolean addLoot(Loot loot){
-        if(isFull()){
-            return false;
-        }
-        else {
+    public void addLoot(Loot loot){
+        if(!isFull()){
             loots.add(loot);
-            return true;
         }
     }
 
@@ -42,19 +38,16 @@ public class Inventory {
         return loots;
     }
 
-    private boolean remove(Loot loot){
-        if (isEmpty()){
-            return false;
-        }else {
+    private void remove(Loot loot){
+        if (!isEmpty()){
             loots.remove(loot);
-            return true;
         }
     }
 
     public void movePosition(Direction direction) {
         switch (direction){
-            case LEFT : if(position != 0){ position--;}; break;
-            case RIGHT: if(position != getSize() - 1){position++;}; break;
+            case GAUCHE: if(position != 0){ position--;} break;
+            case DROITE: if(position != getSize() - 1){position++;} break;
         }
 
     }

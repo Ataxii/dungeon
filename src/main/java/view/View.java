@@ -5,15 +5,12 @@ import model.Move;
 import model.Player;
 import model.loot.Loot;
 import model.monster.Monster;
-import model.room.RoomType;
-
-import java.awt.geom.Point2D;
-import java.io.IOException;
+import model.room.Room;
 
 public interface View {
     void handleMove(Move move);
     //la salle oùvous etes
-    void room(RoomType roomType);
+    void room(Room roomType);
 
     // quand il y a un combat
     void fight(Player player, Monster monster);
