@@ -4,21 +4,17 @@ package model.room;
 
 import model.Direction;
 import model.Player;
-import model.loot.Chess;
-import model.loot.Loot;
-import model.loot.Potion;
-import model.loot.Weapon;
+import model.loot.Chest;
 import view.View;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class LootRoom extends Room {
-    private final Chess chess;
+    private final Chest chest;
 
     public LootRoom(Direction... directions) {
         super(directions);
-        chess = new Chess();
+        this.chest = new Chest();
     }
 
     @Override
@@ -28,9 +24,9 @@ public class LootRoom extends Room {
 
     @Override
     public void action(Player player, ArrayList<View> views) {
-        chess.getLoot().action(player);
+        chest.getLoot().action(player);
         for (View view : views) {
-            view.looting(player, chess.getLoot());
+            view.looting(player, chest.getLoot());
         }
     }
 }

@@ -2,10 +2,10 @@ package model.loot;
 
 import java.util.Random;
 
-public class Chess {
+public class Chest {
     private final Loot loot;
 
-    public Chess() {
+    public Chest() {
         this.loot = generationLoot();
     }
 
