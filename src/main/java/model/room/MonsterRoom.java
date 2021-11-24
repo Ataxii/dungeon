@@ -2,6 +2,7 @@ package model.room;
 
 
 import model.Direction;
+import model.Fight;
 import model.Player;
 import model.monster.Monster;
 import model.monster.Orc;
@@ -16,34 +17,11 @@ public class MonsterRoom extends Room {
     public MonsterRoom(Direction... directions) {
         super(directions);
         this.monster = new Orc();
-
     }
 
     @Override
     public void action(Player player, ArrayList<View> views) {
-        while (player.isAlive() && monster.isAlive()) {
-            if (player.strength > monster.getStrength()) {
-                monster.takeDammage(player.strength);
-                //a une chance d'attaquer
-                Random random = new Random();
-                if (random.nextBoolean()) {
-                    player.takeDamages(monster.getStrength());
-                }
-            } else {
-                Random random = new Random();
-                if (random.nextBoolean()) {
-                    player.takeDamages(monster.getStrength());
-                }
-                monster.takeDammage(player.strength);
-            }
-        }
-        //récompense si le montre etait plus fort
-        if (monster.getStrength() > player.strength){
-            player.strength = player.strength + (monster.getStrength() - player.strength);
-        }
-        for (View view : views) {
-            view.fight(player, monster);
-        }
+        Fight.makeFight(player, monster, views);
     }
 
     @Override

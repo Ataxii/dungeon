@@ -2,24 +2,14 @@ package view;
 
 import model.Direction;
 import model.Dungeon;
-import model.Move;
 import model.Player;
 import model.loot.Loot;
 import model.monster.Monster;
 import model.room.Room;
 
-import java.io.PrintStream;
 
+public class ConsoleView implements View {
 
-public class ConsoleView<ConsoleReader> implements View {
-
-
-    PrintStream print = new PrintStream(System.out);
-
-    @Override
-    public void handleMove(Move move){
-        System.out.println(move.message);
-    }
 
     @Override
     public void room(Room roomType) {
@@ -41,15 +31,15 @@ public class ConsoleView<ConsoleReader> implements View {
             System.out.println("Vous avez malheureusement perdu le combat :(");
         }
         else {
-            System.out.println("Vous avez gagné le combat !!! Vous avez donc " + player.health + " de vie et "
-            + player.strength + " de force");
+            System.out.println("Vous avez gagné le combat !!! Vous avez donc " + player.getHealth() + " de vie et "
+            + player.getStrength() + " de force");
         }
     }
 
     @Override
     public void looting(Player player, Loot loot) {
         System.out.println("Vous avez récupéré : " + loot.getName() + " avec une value de : " + loot.getValue());
-        System.out.println("Votre personnage a une vie de : " + player.health + " et une force de : " + player.strength);
+        System.out.println("Votre personnage a une vie de : " + player.getHealth() + " et une force de : " + player.getStrength());
     }
 
     @Override
@@ -63,14 +53,14 @@ public class ConsoleView<ConsoleReader> implements View {
         makeSplit();
         String selection = "";
         int i = 0;
-        if(dungeon.player.inventory.isEmpty()){
+        if(dungeon.getPlayer().getInventory().isEmpty()){
             System.out.println("Ton inventaire est vide!");
         }
         else {
-            System.out.println("Tu as " + dungeon.player.health + "/" + dungeon.player.getMaxHealth() + " hp");
-            for (Loot loot : dungeon.player.inventory.getLoots()) {
+            System.out.println("Tu as " + dungeon.getPlayer().getHealth() + "/" + dungeon.getPlayer().getMaxHealth() + " hp");
+            for (Loot loot : dungeon.getPlayer().getInventory().getLoots()) {
 
-                if(dungeon.player.inventory.getPosition() == i){
+                if(dungeon.getPlayer().getInventory().getPosition() == i){
                     selection += "{" + i + "}" + " : " + loot.getName() + " de " + loot.getValue() + " hp || ";
                 }
                 else {

@@ -3,10 +3,10 @@ package model;
 import model.loot.Loot;
 
 public class Player {
-    public int strength;
-    public int health;
+    private int strength;
+    private int health;
     private final int maxHealth;
-    public Inventory inventory;
+    private final Inventory inventory;
 
     /**
      * Constructeur d'un player composé d'un inventaire vide, une force et d'un nombre de hp
@@ -35,5 +35,21 @@ public class Player {
     public void takeHeal(){
         Loot potion = inventory.use();
         health = Math.min(health + potion.getValue(), maxHealth);
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }

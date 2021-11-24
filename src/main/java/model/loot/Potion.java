@@ -20,6 +20,6 @@ public class Potion implements Loot{
 
     @Override
     public void action(Player player) {
-        player.inventory.addLoot(this);
+        player.getInventory().addLoot(this);
     }
 }

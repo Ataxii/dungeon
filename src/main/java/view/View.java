@@ -1,14 +1,12 @@
 package view;
 
 import model.Dungeon;
-import model.Move;
 import model.Player;
 import model.loot.Loot;
 import model.monster.Monster;
 import model.room.Room;
 
 public interface View {
-    void handleMove(Move move);
     //la salle oùvous etes
     void room(Room roomType);
 

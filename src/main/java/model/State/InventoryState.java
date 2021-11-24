@@ -16,10 +16,7 @@ public class InventoryState implements State{
     public InventoryState(JavaFXController javaFXController){
         this.javaFXController = javaFXController;
     }
-    @Override
-    public void openInventory() {
 
-    }
 
     @Override
     public void closeInventory() {
@@ -28,6 +25,26 @@ public class InventoryState implements State{
                 javaFXController.getDungeon().views) {
             view.room(javaFXController.getDungeon().getActualRoom());
         }
+    }
+
+    @Override
+    public void inventoryMoveRight() {
+        javaFXController.getDungeon().getPlayer().getInventory().movePosition(Direction.DROITE);
+        javaFXController.getDungeon().printInventory();
+    }
+
+    @Override
+    public void inventoryMoveLeft() {
+        javaFXController.getDungeon().getPlayer().getInventory().movePosition(Direction.GAUCHE);
+        javaFXController.getDungeon().printInventory();
+    }
+
+
+    @Override
+    public void choosePotion() {
+        javaFXController.getDungeon().getPlayer().takeHeal();
+        javaFXController.getDungeon().getPlayer().getInventory().resetPosition();
+        javaFXController.getDungeon().printInventory();
     }
 
     @Override
@@ -51,22 +68,7 @@ public class InventoryState implements State{
     }
 
     @Override
-    public void inventoryMoveRight() {
-        javaFXController.getDungeon().player.inventory.movePosition(Direction.DROITE);
-        javaFXController.getDungeon().printInventory();
-    }
+    public void openInventory() {
 
-    @Override
-    public void inventoryMoveLeft() {
-        javaFXController.getDungeon().player.inventory.movePosition(Direction.GAUCHE);
-        javaFXController.getDungeon().printInventory();
-    }
-
-
-    @Override
-    public void choosePotion() {
-        javaFXController.getDungeon().player.takeHeal();
-        javaFXController.getDungeon().player.inventory.resetPosition();
-        javaFXController.getDungeon().printInventory();
     }
 }

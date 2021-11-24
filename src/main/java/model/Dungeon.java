@@ -10,21 +10,24 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 public class Dungeon {
-    public Player player;
+    private final Player player;
     public Room[][] rooms;
     public Point2D playerPosition;
     public ArrayList<View> views;
 
-    public Dungeon(JavaFXView view) {
-        this.player = new Player(10, 600);
+    public Dungeon(Player player, JavaFXView view, ConsoleView consoleView) {
+        this.player = player;
         generation();
         playerPosition = new Point();
         playerPosition.setLocation(0,0);
         views = new ArrayList<>();
-        views.add(new ConsoleView());
+        views.add(consoleView);
         views.add(view);
     }
 
+    /*
+    Permet de faire bouger le joueur, d'actualiser les views et de faire l'action de la nouvelle room
+     */
     public void movePlayer(Direction direction){
         for (int i = 0; i < getActualRoom().getDirections().length; i++) {
             if (getActualRoom().getDirections()[i] == direction){
@@ -102,7 +105,9 @@ public class Dungeon {
         rooms[5][3] = new LootRoom(Direction.HAUT);
     }
 
-
+    public Player getPlayer() {
+        return player;
+    }
 }
 
 

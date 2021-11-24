@@ -19,8 +19,7 @@ public class Orc implements Monster{
         int hp = rand.nextInt(170 - 100 + 1) + 100;
         this.hp = hp;
         this.life = hp;
-        int strength = rand.nextInt(25 - 5 + 1) + 5;
-        this.strength = strength;
+        this.strength = rand.nextInt(25 - 5 + 1) + 5;
 
     }
 

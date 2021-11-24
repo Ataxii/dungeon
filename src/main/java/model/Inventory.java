@@ -49,7 +49,6 @@ public class Inventory {
             case GAUCHE: if(position != 0){ position--;} break;
             case DROITE: if(position != getSize() - 1){position++;} break;
         }
-
     }
 
     public int getPosition() {

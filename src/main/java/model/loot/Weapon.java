@@ -21,6 +21,6 @@ public class Weapon implements Loot{
 
     @Override
     public void action(Player player) {
-        player.strength += getValue();
+        player.setStrength(player.getStrength()+getValue());
     }
 }

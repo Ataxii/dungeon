@@ -3,7 +3,6 @@ package view;
 import javafx.scene.text.*;
 import model.Direction;
 import model.Dungeon;
-import model.Move;
 import model.Player;
 import model.loot.Loot;
 import model.monster.Monster;
@@ -18,13 +17,9 @@ public class JavaFXView implements View{
     public Text commandes = new Text(100 , 300, "[e] Ouvir l'inventaire\n [zqsd] Se déplacer");
 
     public void updatePlayer(Player player){
-        playerInformation.setText("Player : " + player.health + "/" + player.getMaxHealth() + " hp || "
-                + player.strength + " de force");
+        playerInformation.setText("Player : " + player.getHealth() + "/" + player.getMaxHealth() + " hp || "
+                + player.getStrength() + " de force");
 
-    }
-
-    public void handleMove(Move move){
-        top.setText(move.message);
     }
 
     @Override
@@ -60,7 +55,7 @@ public class JavaFXView implements View{
     public void looting(Player player, Loot loot) {
         String dialogue = "";
         dialogue += "Vous avez récupéré : " + loot.getName() + " avec une value de : " + loot.getValue() + "\n";
-        dialogue += "Votre personnage a une vie de : " + player.health + " et une force de : " + player.strength + "\n";
+        dialogue += "Votre personnage a une vie de : " + player.getHealth() + " et une force de : " + player.getStrength() + "\n";
         this.middle.setText(dialogue);
         updatePlayer(player);
     }
@@ -76,14 +71,14 @@ public class JavaFXView implements View{
         StringBuilder selection = new StringBuilder();
         String dialoque = "";
         int i = 0;
-        if(dungeon.player.inventory.isEmpty()){
+        if(dungeon.getPlayer().getInventory().isEmpty()){
             dialoque += "Ton inventaire est vide!";
         }
         else {
-            dialoque+= "Tu as " + dungeon.player.health + "/" + dungeon.player.getMaxHealth() + " hp\n";
-            for (Loot loot : dungeon.player.inventory.getLoots()) {
+            dialoque+= "Tu as " + dungeon.getPlayer().getHealth() + "/" + dungeon.getPlayer().getMaxHealth() + " hp\n";
+            for (Loot loot : dungeon.getPlayer().getInventory().getLoots()) {
 
-                if(dungeon.player.inventory.getPosition() == i){
+                if(dungeon.getPlayer().getInventory().getPosition() == i){
                     selection.append("{").append(i).append("}").append(" : ").append(loot.getName()).append(" de ").append(loot.getValue()).append(" hp || ");
                 }
                 else {
@@ -97,6 +92,6 @@ public class JavaFXView implements View{
         top.setText(dialoque);
         commandes.setText("[e] fermer inventaire\n" + "[enter] selectionné");
 
-        updatePlayer(dungeon.player);
+        updatePlayer(dungeon.getPlayer());
     }
 }
