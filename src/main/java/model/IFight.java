@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public interface IFight {
+    //TODO : faire que IFight soit une interface et que fight soit une classe a proprement parlé
     static void makeFight(Player player, Monster monster, ArrayList<View> views) {
         while (player.isAlive() && monster.isAlive()) {
             if (player.getStrength() > monster.getStrength()) {
