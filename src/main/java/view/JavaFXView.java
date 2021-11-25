@@ -43,6 +43,7 @@ public class JavaFXView implements View{
 
         if (monster.isAlive()){
             dialogue += "Vous avez malheureusement perdu le combat :(\n";
+            System.exit(1);
         }
         else {
             dialogue += "Vous avez gagné le combat !!!";
