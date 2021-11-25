@@ -20,6 +20,6 @@ public class EmptyRoom extends Room {
 
     @Override
     public void action(Player player, ArrayList<View> views) {
-        views.get(1).makeSplit();
+        views.get(1).makeSplit(player);
     }
 }

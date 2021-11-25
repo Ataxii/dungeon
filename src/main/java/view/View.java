@@ -7,7 +7,7 @@ import model.monster.Monster;
 import model.room.Room;
 
 public interface View {
-    //la salle oùvous etes
+    //la salle où vous etes
     void room(Room roomType);
 
     // quand il y a un combat
@@ -16,10 +16,7 @@ public interface View {
     //quand il y a du loot
     void looting(Player player, Loot loot);
 
-    //quand on propose d'utiliser une potion
-    //...
-
-    void makeSplit();
+    void makeSplit(Player player);
 
     void inventory(Dungeon dungeon);
 }

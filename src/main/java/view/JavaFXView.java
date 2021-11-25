@@ -61,13 +61,14 @@ public class JavaFXView implements View{
     }
 
     @Override
-    public void makeSplit() {
+    public void makeSplit(Player player) {
         this.middle.setText("");
+        updatePlayer(player);
     }
 
     @Override
     public void inventory(Dungeon dungeon) {
-        makeSplit();
+        makeSplit(dungeon.getPlayer());
         StringBuilder selection = new StringBuilder();
         String dialoque = "";
         int i = 0;

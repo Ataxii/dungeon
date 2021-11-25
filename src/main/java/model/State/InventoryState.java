@@ -20,7 +20,7 @@ public class InventoryState implements State{
 
     @Override
     public void closeInventory() {
-        javaFXController.getDungeon().views.get(0).makeSplit();
+        javaFXController.getDungeon().views.get(0).makeSplit(javaFXController.getDungeon().getPlayer());
         for (View view :
                 javaFXController.getDungeon().views) {
             view.room(javaFXController.getDungeon().getActualRoom());

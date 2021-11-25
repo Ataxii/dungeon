@@ -43,14 +43,14 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public void makeSplit(){
+    public void makeSplit(Player player){
         System.out.println("--------------------------\n\n\n\n\n\n\n\n\n\n");
 
     }
 
     @Override
     public void inventory(Dungeon dungeon) {
-        makeSplit();
+        makeSplit(dungeon.getPlayer());
         String selection = "";
         int i = 0;
         if(dungeon.getPlayer().getInventory().isEmpty()){

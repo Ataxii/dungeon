@@ -10,7 +10,6 @@ import model.State.State;
 
 public class JavaFXController {
 
-    //boolean inventory's = false;//on en aura plus besoin aprés
     private final Dungeon dungeon;
     EventHandler<? super KeyEvent> eventHandler;
     State moveState = new MoveState(this);

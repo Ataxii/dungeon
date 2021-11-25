@@ -44,7 +44,7 @@ public class Dungeon {
                     case DROITE: playerPosition.setLocation(playerX + 1, playerY); break;
                 }
                 for (View view : views) {
-                    view.makeSplit();
+                    view.makeSplit(player);
                     view.room(getActualRoom());
                 }
                 getActualRoom().action(player, views);
