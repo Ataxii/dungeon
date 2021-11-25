@@ -1,9 +1,7 @@
 package model.loot;
 
-import java.util.Random;
-
-public class Chest {
-    private final Loot loot;
+public abstract class Chest {
+    Loot loot;
 
     public Chest() {
         this.loot = generationLoot();
@@ -13,11 +11,5 @@ public class Chest {
         return loot;
     }
 
-    private Loot generationLoot() {
-        Random random = new Random();
-        if(random.nextBoolean()){
-            return new Weapon();
-        }
-        else return new Potion();
-    }
+    public abstract Loot generationLoot();
 }

@@ -16,6 +16,12 @@ public abstract class Room {
     public Direction[] getDirections(){
         return this.directions;
     }
+
+    /**
+     * provoque l'action liée à la room
+     * @param player le joueur
+     * @param views les views pour l'affichage
+     */
     public abstract void action(Player player, ArrayList<View> views);
     public abstract String description();
 }

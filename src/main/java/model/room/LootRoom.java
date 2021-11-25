@@ -4,17 +4,17 @@ package model.room;
 
 import model.Direction;
 import model.Player;
-import model.loot.Chest;
+import model.loot.WoodChest;
 import view.View;
 
 import java.util.ArrayList;
 
 public class LootRoom extends Room {
-    private final Chest chest;
+    private final WoodChest woodChest;
 
     public LootRoom(Direction... directions) {
         super(directions);
-        this.chest = new Chest();
+        this.woodChest = new WoodChest();
     }
 
     @Override
@@ -24,9 +24,9 @@ public class LootRoom extends Room {
 
     @Override
     public void action(Player player, ArrayList<View> views) {
-        chest.getLoot().action(player);
+        woodChest.getLoot().action(player);
         for (View view : views) {
-            view.looting(player, chest.getLoot());
+            view.looting(player, woodChest.getLoot());
         }
     }
 }
