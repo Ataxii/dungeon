@@ -3,6 +3,7 @@ package model.room;
 
 import model.Direction;
 import model.Fight;
+import model.IFight;
 import model.Player;
 import model.monster.Monster;
 import model.monster.Orc;
@@ -21,7 +22,7 @@ public class MonsterRoom extends Room {
 
     @Override
     public void action(Player player, ArrayList<View> views) {
-        Fight.makeFight(player, monster, views);
+        IFight.makeFight(player, monster, views);
     }
 
     @Override
