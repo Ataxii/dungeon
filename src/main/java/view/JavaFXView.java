@@ -1,5 +1,6 @@
 package view;
 
+import controller.App;
 import javafx.scene.text.*;
 import model.Direction;
 import model.Dungeon;
@@ -43,7 +44,8 @@ public class JavaFXView implements View{
 
         if (monster.isAlive()){
             dialogue += "Vous avez malheureusement perdu le combat :(\n";
-            System.exit(1);
+            App.close();
+            //System.exit(1);
         }
         else {
             dialogue += "Vous avez gagné le combat !!!";

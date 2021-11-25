@@ -14,8 +14,11 @@ import view.JavaFXView;
 
 public class App extends Application {
 
+    private static Stage primaryStage;
+
     @Override
     public void start(Stage primaryStage) throws InterruptedException {
+        App.primaryStage = primaryStage;
         Group root = new Group();
         JavaFXView view = new JavaFXView();
         ConsoleView consoleView = new ConsoleView();
@@ -33,7 +36,7 @@ public class App extends Application {
         root.getChildren().add(new Canvas(800,400));
 
         Scene scene = new Scene(root);
-        Player player = new Player(20, 100);
+        Player player = new Player(20, 10);
         player.getInventory().addLoot(new Potion());
         Dungeon dungeon = new Dungeon(player, view, consoleView);
 
@@ -47,4 +50,7 @@ public class App extends Application {
 
     }
 
+    public static void close() {
+        primaryStage.close();
+    }
 }

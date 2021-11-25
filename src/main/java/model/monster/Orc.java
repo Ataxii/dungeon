@@ -13,7 +13,7 @@ public class Orc implements Monster{
         this.life = hp;
     }
 
-    //génération aléatoir
+    //génération aléatoire
     public Orc(){
         Random rand = new Random();
         int hp = rand.nextInt(170 - 100 + 1) + 100;
